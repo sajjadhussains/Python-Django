@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>from project</title>
+    <link rel="stylesheet" href="{% static 'css/first.css' %}">
+</head>
+<body class="project-body">
+    <div>
+        <h1 class="title">This is our Django Project</h1>
+    <a href="https://phitron.io">This is our course link</a>
+    </div>
+    {% static 'images/image1.jfif' as nature%}
+    <img src={{nature}} alt="">
+    <!-- <img src="{% static 'images/image1.jfif' %}" alt="Nature image"> -->
+    <img src="{% get_static_prefix %}images/image2.jfif" alt="">
+
+    <script src="{% static 'js/first.js' %}"></script>
+</body>
+</html>

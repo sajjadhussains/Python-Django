@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>from app</title>
+    <link rel="stylesheet" href="{% static 'first_app/css/first.css' %}">
 </head>
 <style>
     .heading_section{
@@ -20,12 +22,21 @@
         color: red;
         font-size: 20px;
     }
+    .if-else{
+        margin: 10px;
+        background-color: aqua;
+        text-align: center;
+        padding: 20px;
+    }
 </style>
-<body>
+<body class="app-body">
     <div class="heading_section">
+        
         <h1>This is Our First App</h1>
         <h1>Author Name:{{author}}</h1>
     </div>
+   <div class="if-else">
+    <h1>Lerning if else in Django template</h1>
     {% if age >= 18 %}
     <p class="green-signal">You Can Take Liscence</p>
     {% else %}
@@ -37,5 +48,30 @@
     {% elif cgpa < 3 %}
     <p class="red-signal">You have to concentrate on academic</p>
     {% endif %}
+   </div>
+
+  <div class="for-loop">
+    <h1>Learning for Loop writting in Python Django template</h1>
+    <table border="1" width="500">
+        <tr>
+            <th>Id</th>
+            <th>Course</th>
+            <th>Teacher</th>
+        </tr>
+        {% for i in courses %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.course}}</td>
+            <td>{{i.teacher}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="img-section">
+        <img src="{% static 'first_app/images/image1.jfif' %}" alt="">
+    </div>
+    <h1 class="new-title">New Title</h1>
+  </div>
+
+  <script src="{% static 'first_app/js/first.js' %}"></script>
 </body>
 </html>

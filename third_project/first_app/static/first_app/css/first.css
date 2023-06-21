@@ -1,0 +1,16 @@
+.app-body{
+    background-color: yellowgreen;
+}
+.img-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-section img{
+    height: 400px;
+    width: 600px;
+}
+.new-title{
+    color:blueviolet;
+    text-align: center;
+}
