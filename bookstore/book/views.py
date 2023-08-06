@@ -1,10 +1,22 @@
+from typing import Any, Dict
 from django.shortcuts import render,redirect
 from . forms import BookStoreForm,BookStoreModel
+from django.views.generic import TemplateView
 
 # Create your views here.
 
-def home(request):
-    return render(request,'home.html')
+# functional based view
+# def home(request):
+#     return render(request,'home.html')
+
+# class based view
+class MyTemplateView(TemplateView):
+    template_name='home.html'
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context = {'name':'rahim','age':23}
+        # print(kwargs)
+        return context
 
 def store_book(request):
     if request.method == 'POST':
