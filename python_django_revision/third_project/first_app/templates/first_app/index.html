@@ -8,5 +8,29 @@
 <body>
     <h1>Now We are inside App</h1>
     <h1>Author Name : {{name}}</h1>
+    {% if age >= 18 %}
+    <h3>You can get motorbike licence,if you are qualified</h3>
+    {% else %}
+    <h3 style="color:red;">You are still child,grow up with knowledge first</h3>
+    {% endif %}
+
+    <table border="1" width="500">
+        <tr>
+            <th>Id</th>
+            <th>Course_name</th>
+            <th>Teacher Name</th>
+        </tr>
+        {% for i in courses %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.course_name}}</td>
+            <td>{{i.teacher}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1>{{ marks | add:'2'}}</h1>
+    <h1>{{ name | capfirst }}</h1>
+    <h1>"{{ name | center:"15" }}"</h1>
+    <h1>"{{ blog | cut:" " }}"</h1>
 </body>
 </html>
