@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}form-page{% endblock%}
+
+{% block content %}
+<form method="post" class="mx-auto" action="{% url 'about' %}"> 
+    {% csrf_token %} <!--To avoid malacious submit or django handle form security by csrf_token -->
+    <div class="col-md-4">
+      <label for="name" class="form-label">name</label>
+      <input type="text" class="form-control" id="name" name="username" required>
+    </div>
+    <div class="col-md-4">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" name="select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="One">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+          </select>
+      </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+    
+  </form>
+
+  <h1>{{name}}</h1>
+  <h1>{{email}}</h1>
+{% endblock %}
