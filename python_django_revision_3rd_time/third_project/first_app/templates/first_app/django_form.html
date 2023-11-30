@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}dajango_form-page{% endblock%}
+
+{% block content %} 
+{% load crispy_forms_tags %}
+<form method="post" class="w-50 h-50 mx-auto">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit" class="btn btn-primary mt-5">Submit</button>
+</form>
+{% endblock %}
