@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}show-book{% endblock %}
+{% block content %}
+<h1 class="text-center my-4">All the books you can get from here</h1>
+<div class="container">
+    {% if datas %}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">book name</th>
+        <th scope="col">author</th>
+        <th scope="col">category</th>
+        <th scope="col">first_publication</th>
+        <th scope="col">last_publication</th>
+        <th scope="col">action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for book in datas %}
+        <tr>
+            <th scope="row">{{book.id}}</th>
+            <td>{{book.book_name}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.category}}</td>
+            <td>{{book.first_pub}}</td>
+            <td>{{book.last_pub}}</td>
+            <td>
+                <a href="{% url 'editbook' id=book.id %}" class="btn btn-success">Edit</a>
+                <a href="{% url 'deletebook' id=book.id %}" class="btn btn-danger btn-lg">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+     
+    </tbody>
+  </table>
+{% else %}
+<h1>No Data is availabe now</h1>
+{% endif %} 
+</div>
+{% endblock %}

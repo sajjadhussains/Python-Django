@@ -10,4 +10,48 @@ class StudentModel(models.Model):
     
     def __str__(self):
         return f"{self.roll}-{self.name}"
+
+class CommonInfoClass(models.Model):
+    name = models.CharField(max_length=20)
+    city = models.CharField(max_length = 50)
+    class Meta:
+        abstract = True
+
+class StudentInfoModel(CommonInfoClass):
+    roll = models.IntegerField()
+    payment = models.IntegerField()
+    section = models.CharField(max_length=20)
+
+class TeacherInfoModel(CommonInfoClass):
+    salary = models.IntegerField()
+
+
+class EmployeeModel(models.Model):
+    name=models.CharField(max_length=20)
+    city = models.CharField(max_length=50)
+    designation = models.CharField(max_length=30)
+
+class ManagerModel(EmployeeModel):
+    take_interview = models.BooleanField()
+    hiring = models.BooleanField()
+    
+class Person(models.Model):
+    name = models.CharField(max_length=20)
+    city = models.CharField(max_length=40)
+    email = models.EmailField(max_length=40)
+    def __str__(self):
+        return self.name
+
+class Passport(models.Model):
+    user = models.OneToOneField(to=Person,on_delete=models.CASCADE)
+    pass_number = models.IntegerField()
+    page = models.IntegerField()
+    validity = models.IntegerField()
+
+#one to many relationship
+class Post(models.Model):
+    user = models.ForeignKey(Person,on_delete=models.SET_NULL,null=True)
+    post_cap=models.CharField(max_length=40)
+    post_details=models.CharField(max_length=100)
+    
         
