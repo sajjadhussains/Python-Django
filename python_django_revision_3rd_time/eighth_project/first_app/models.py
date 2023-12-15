@@ -54,4 +54,20 @@ class Post(models.Model):
     post_cap=models.CharField(max_length=40)
     post_details=models.CharField(max_length=100)
     
-        
+# many to many relationship
+
+class Student(models.Model):
+    name = models.CharField(max_length=20)
+    roll = models.IntegerField()
+    class_name = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.name
+
+class Teacher(models.Model):
+    student = models.ManyToManyField(Student,related_name="teachers")
+    name = models.CharField(max_length=20)
+    subject = models.CharField(max_length=20)
+    mobile = models.CharField(max_length=11)
+    def student_list(self):
+        return ",".join([str(i) for i in self.student.all()])
