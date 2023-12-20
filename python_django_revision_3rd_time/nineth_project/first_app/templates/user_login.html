@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+   <h1>This is Login page</h1>
+   <form method="post" style="width: 50%;margin:auto" novalidate>
+    {% csrf_token %}
+    {% for fm in form %}
+    <div class="mb-3">
+        {{fm.label_tag}}
+        {{fm}}
+        {{fm.errors|striptags}}
+    </div>
+    {% endfor %}
+    <!-- {{form|crispy}} -->
+
+    <button class="btn btn-primary" type="submit">Login</button>
+</form>
+{% endblock %}
