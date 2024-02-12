@@ -22,19 +22,21 @@ def signup(request):
     return render(request,'signup.html',{'form':form})
 
 def user_login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request=request,data=request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['username']
-            userpass = form.cleaned_data['password']
-            user = authenticate(username=name,password=userpass)
-            if user is not None:
-                login(request,user)
-                return redirect('profile')
-    else:
-        form = AuthenticationForm()
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            form = AuthenticationForm(request=request,data=request.POST)
+            if form.is_valid():
+                name = form.cleaned_data['username']
+                userpass = form.cleaned_data['password']
+                user = authenticate(username=name,password=userpass)
+                if user is not None:
+                    login(request,user)
+                    return redirect('profile')
+        else:
+            form = AuthenticationForm()
         return render(request,'user_login.html',{'form':form})  
-
+    else:
+        return redirect('profile')
 def user_logout(request):
     logout(request)
     return redirect('login')     

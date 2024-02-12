@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from book.forms import BookStoreForm
 from book.models import BookStoreModel
+from django.views.generic import TemplateView
 # Create your views here.
 
 def home(request):
     return render(request,'base.html')
-
+# class based view
 
 def store_book(request):
     if request.method == 'POST':

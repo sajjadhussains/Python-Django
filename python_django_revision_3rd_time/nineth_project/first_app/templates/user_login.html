@@ -4,8 +4,13 @@
    <h1>This is Login page</h1>
    <form method="post" style="width: 50%;margin:auto" novalidate>
     {% csrf_token %}
+    {% if form.non_field_errors %}
+    {% for er in form.non_field_errors %}
+    <small class="bg-danger text-white p-3">{{er}}</small>
+    {% endfor %}
+    {% endif %}
     {% for fm in form %}
-    <div class="mb-3">
+    <div class="mb-3 mt-4">
         {{fm.label_tag}}
         {{fm}}
         {{fm.errors|striptags}}
